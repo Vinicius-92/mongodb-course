@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "uyOmV54ctjVh/AmCy/YGv7DO53bJs+FrleHx30wsEX4=",
+  "Source": "CursoMongo.Api",
+  "BasePath": "_content/CursoMongo.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "mFH0A+gDeegRxoRub9PM7p9oDTS1RXiFvhTiSdHB9HUgvHbCcmsZKwMtF2mmWRS9Q4nPI9Q7cfWQUPrkVeefFQ==",
+  "success": true,
+  "projectFilePath": "/home/viniciussilva/estudos/mongodb/src/CursoMongo.Api/CursoMongo.Api.csproj",
+  "expectedPackageFiles": [
+    "/home/viniciussilva/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
