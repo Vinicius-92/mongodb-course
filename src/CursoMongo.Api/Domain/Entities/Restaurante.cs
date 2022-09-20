@@ -22,9 +22,9 @@ namespace CursoMongo.Api.Domain.Entities
 
         public string? Id { get; private set; }
         public string? Nome { get; private set; }
-        public ECozinha? Cozinha { get; private set; }
-        public Endereco? Endereco { get; private set; }
-        public ValidationResult? ValidationResult { get; set; }
+        public ECozinha Cozinha { get; private set; }
+        public Endereco Endereco { get; private set; }
+        public ValidationResult ValidationResult { get; set; }
 
         public void AtribuirEndereco(Endereco endereco)
         {
