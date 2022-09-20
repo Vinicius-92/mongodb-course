@@ -1,19 +1,31 @@
 {
   "version": 2,
-  "dgSpecHash": "FfyWgn/jPhig1WE6R+7A7FC71Fro91VUUayXp4WMIAGTFTYdldTfA/beaurDZFz48kgXd8qICX1fwIyC8xQCeQ==",
+  "dgSpecHash": "5ujnCfRDYQSIOIe17B0SuAZaLO893s9gmbAMhjfnDrUBEbi4k0e2f1sdQlx7/G0O1EUTRpakTJOIl9IpxQxrng==",
   "success": true,
   "projectFilePath": "/home/viniciussilva/estudos/mongodb/src/CursoMongo.Api/CursoMongo.Api.csproj",
   "expectedPackageFiles": [
+    "/home/viniciussilva/.nuget/packages/dnsclient/1.6.1/dnsclient.1.6.1.nupkg.sha512",
     "/home/viniciussilva/.nuget/packages/fluentvalidation/11.2.1/fluentvalidation.11.2.1.nupkg.sha512",
     "/home/viniciussilva/.nuget/packages/fluentvalidation.aspnetcore/11.2.2/fluentvalidation.aspnetcore.11.2.2.nupkg.sha512",
     "/home/viniciussilva/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.2.1/fluentvalidation.dependencyinjectionextensions.11.2.1.nupkg.sha512",
     "/home/viniciussilva/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "/home/viniciussilva/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/2.1.0/microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/microsoft.netcore.platforms/5.0.0/microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "/home/viniciussilva/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/microsoft.win32.registry/5.0.0/microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/mongodb.bson/2.17.1/mongodb.bson.2.17.1.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/mongodb.driver/2.17.1/mongodb.driver.2.17.1.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/mongodb.driver.core/2.17.1/mongodb.driver.core.2.17.1.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/mongodb.libmongocrypt/1.5.5/mongodb.libmongocrypt.1.5.5.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/sharpcompress/0.30.1/sharpcompress.0.30.1.nupkg.sha512",
     "/home/viniciussilva/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "/home/viniciussilva/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "/home/viniciussilva/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
-    "/home/viniciussilva/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+    "/home/viniciussilva/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/system.runtime.compilerservices.unsafe/5.0.0/system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/system.security.accesscontrol/5.0.0/system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "/home/viniciussilva/.nuget/packages/system.security.principal.windows/5.0.0/system.security.principal.windows.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

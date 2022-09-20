@@ -7,6 +7,12 @@ namespace CursoMongo.Api.Domain.Entities
 {
     public class Restaurante : AbstractValidator<Restaurante>
     {
+        public Restaurante(string nome, ECozinha cozinha)
+        {
+            Nome = nome;
+            Cozinha = cozinha;
+        }
+
         public Restaurante(string id, string nome, ECozinha cozinha)
         {
             Id = id;
@@ -16,9 +22,9 @@ namespace CursoMongo.Api.Domain.Entities
 
         public string? Id { get; private set; }
         public string? Nome { get; private set; }
-        public ECozinha Cozinha { get; private set; }
-        public Endereco Endereco { get; private set; }
-        public ValidationResult ValidationResult { get; set; }
+        public ECozinha? Cozinha { get; private set; }
+        public Endereco? Endereco { get; private set; }
+        public ValidationResult? ValidationResult { get; set; }
 
         public void AtribuirEndereco(Endereco endereco)
         {
@@ -44,14 +50,14 @@ namespace CursoMongo.Api.Domain.Entities
 
         private void ValidarEndereco()
         {
-            if(Endereco.Validar())
+            if(Endereco!.Validar())
             {
                 return;
             }
 
             foreach (var erro in Endereco.ValidationResult.Errors)
             {
-                ValidationResult.Errors.Add(erro);
+                ValidationResult!.Errors.Add(erro);
             }
         }
     }
