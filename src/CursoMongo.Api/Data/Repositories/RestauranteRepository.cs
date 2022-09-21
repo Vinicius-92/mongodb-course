@@ -4,6 +4,7 @@ using CursoMongo.Api.Domain.Enums;
 using CursoMongo.Api.Domain.ValueObjects;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace CursoMongo.Api.Data.Repositories
 {
@@ -173,6 +174,28 @@ namespace CursoMongo.Api.Data.Repositories
             });
 
             return retorno;
+        }
+
+        public (long, long) Remover(string id)
+        {
+            var resultadoAvaliacoes = _avaliacoes.DeleteMany(x => x.RestauranteId == id);
+            var resultadoRestaurante = _restaurantes.DeleteOne(x => x.Id == id);
+
+            return (resultadoRestaurante.DeletedCount, resultadoAvaliacoes.DeletedCount);
+        }
+
+        public async Task<IEnumerable<Restaurante>> ObterPorBuscaTextual(string texto)
+        {
+            List<Restaurante> restaurantes = new();
+
+            var filter = Builders<RestauranteSchema>.Filter.Text(texto);
+
+            await _restaurantes.
+                AsQueryable()
+                .Where(x => filter.Inject())
+                .ForEachAsync(d => restaurantes.Add(d.ConverterParaDomain()));
+
+            return restaurantes;
         }
     }
 }

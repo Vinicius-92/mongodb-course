@@ -258,4 +258,45 @@ public class RestaurantesController : ControllerBase
             }
         );
     }
+
+    [HttpDelete("{id}")]
+    public ActionResult Remover(string id)
+    {
+        var restaurante = _restaurantesRepository.ObterPorId(id);
+
+        if (restaurante is null)
+        {
+            return NotFound();
+        }
+
+        (var totalRestauranteRemovido, var totalAvaliacoesRemovidas) = _restaurantesRepository.Remover(id);
+
+        return Ok(
+            new
+            {
+                data = $"Total de exclusões: {totalRestauranteRemovido} restaurante com {totalAvaliacoesRemovidas} avaliações."
+            }
+        );
+    }
+
+    [HttpGet("buscaPorNome")]
+    public async Task<ActionResult> ObterPorBuscaTextual([FromQuery] string texto)
+    {
+        var restaurantes = await _restaurantesRepository.ObterPorBuscaTextual(texto);
+
+        var listagem = restaurantes.ToList().Select(x => new RestauranteListagem
+        {
+            Id = x.Id,
+            Nome = x.Nome,
+            Cozinha = (int) x.Cozinha,
+            Cidade = x.Endereco.Cidade
+        });
+
+        return Ok(
+            new
+            {
+                data = listagem
+            }
+        );
+    }
 }
