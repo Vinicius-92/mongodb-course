@@ -176,6 +176,33 @@ namespace CursoMongo.Api.Data.Repositories
             return retorno;
         }
 
+        public async Task<Dictionary<Restaurante, double>> ObterTop3_ComLookup()
+        {
+            Dictionary<Restaurante, double> retorno = new();
+
+            var top3 = _avaliacoes.Aggregate()
+                .Group(x => x.RestauranteId, g => new { RestauranteId = g.Key, MediaEstrelas = g.Average(a => a.Estrelas) })
+                .SortByDescending(e => e.MediaEstrelas)
+                .Lookup<RestauranteSchema, RestauranteAvalicaoSchema>("restaurantes", "RestauranteId", "Id", "Restaurante")
+                .Lookup<AvaliacaoSchema, RestauranteAvalicaoSchema>("avalicaoes", "Id", "RestauranteId", "Avalicaoes");
+
+                await top3.ForEachAsync(p => 
+                {
+                    Restaurante rest = new(p.Id, p.Restaurante[0].Nome, p.Restaurante[0].Cozinha);
+                    Endereco end = new(
+                        p.Restaurante[0].Endereco.Logradouro,
+                        p.Restaurante[0].Endereco.Numero,
+                        p.Restaurante[0].Endereco.Cidade,
+                        p.Restaurante[0].Endereco.UF,
+                        p.Restaurante[0].Endereco.Cep
+                    );
+
+                    rest.AtribuirEndereco(end);
+                });
+
+            return retorno;
+        }
+
         public (long, long) Remover(string id)
         {
             var resultadoAvaliacoes = _avaliacoes.DeleteMany(x => x.RestauranteId == id);

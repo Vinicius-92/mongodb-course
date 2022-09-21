@@ -238,9 +238,32 @@ public class RestaurantesController : ControllerBase
         });
     }
 
+    [HttpGet("/top3")]
     public async Task<ActionResult> ObterTop3Restaurantes()
     {
         var top3 = await _restaurantesRepository.ObterTop3();
+
+        var listagem = top3.Select(x => new RestauranteTop3
+        {
+            Id = x.Key.Id,
+            Nome = x.Key.Nome,
+            Cozinha = (int) x.Key.Cozinha,
+            Cidade = x.Key.Endereco.Cidade,
+            Estrelas = x.Value
+        });
+
+        return Ok(
+            new
+            {
+                data = listagem
+            }
+        );
+    }
+
+    [HttpGet("/top3-lookup")]
+    public async Task<ActionResult> ObterTop3RestaurantesComLookup()
+    {
+        var top3 = await _restaurantesRepository.ObterTop3_ComLookup();
 
         var listagem = top3.Select(x => new RestauranteTop3
         {
