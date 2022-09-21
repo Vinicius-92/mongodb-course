@@ -207,4 +207,55 @@ public class RestaurantesController : ControllerBase
             }
         );
     }
+
+    [HttpPost("{id}/avaliar")]
+    public ActionResult AvaliarRestaurante(string id, AvaliacaoInclusao avaliacaoInclusao)
+    {
+        var restaurante = _restaurantesRepository.ObterPorId(id);
+
+        if (restaurante is null)
+        {
+            return NotFound();
+        }
+
+        Avaliacao avaliacao = new(avaliacaoInclusao.Estrelas, avaliacaoInclusao.Comentario);
+
+        if (!avaliacao.Validar())
+        {
+            return BadRequest(
+                new
+                {
+                    errors = avaliacao.ValidationResult.Errors.Select(x => x.ErrorMessage)
+                }
+            );
+        }
+
+        _restaurantesRepository.Avaliar(id, avaliacao);
+
+        return Ok(new
+        {
+            data = "Restaurante avaliado com sucesso."
+        });
+    }
+
+    public async Task<ActionResult> ObterTop3Restaurantes()
+    {
+        var top3 = await _restaurantesRepository.ObterTop3();
+
+        var listagem = top3.Select(x => new RestauranteTop3
+        {
+            Id = x.Key.Id,
+            Nome = x.Key.Nome,
+            Cozinha = (int) x.Key.Cozinha,
+            Cidade = x.Key.Endereco.Cidade,
+            Estrelas = x.Value
+        });
+
+        return Ok(
+            new
+            {
+                data = listagem
+            }
+        );
+    }
 }

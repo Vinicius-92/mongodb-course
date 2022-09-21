@@ -10,10 +10,12 @@ namespace CursoMongo.Api.Data.Repositories
     public class RestauranteRepository
     {
         IMongoCollection<RestauranteSchema> _restaurantes;
+        IMongoCollection<AvaliacaoSchema> _avaliacoes;
 
         public RestauranteRepository(MongoDb mongoDB)
         {
             _restaurantes = mongoDB.DB.GetCollection<RestauranteSchema>("restaurante");
+            _avaliacoes = mongoDB.DB.GetCollection<AvaliacaoSchema>("avaliacao");
         }
 
         public void Inserir(Restaurante restaurante)
@@ -134,6 +136,43 @@ namespace CursoMongo.Api.Data.Repositories
                 .ForEach(d => restaurantes.Add(d.ConverterParaDomain()));
             
             return restaurantes;
+        }
+
+        public void Avaliar(string restauranteId, Avaliacao avaliacao)
+        {
+            var doc = new AvaliacaoSchema
+            {
+                RestauranteId = restauranteId,
+                Estrelas = avaliacao.Estrelas,
+                Comentario = avaliacao.Comentario
+            };
+
+            _avaliacoes.InsertOne(doc);
+        }
+
+        public async Task<Dictionary<Restaurante, double>> ObterTop3()
+        {
+            Dictionary<Restaurante, double> retorno = new();
+
+            var top3 = _avaliacoes.Aggregate()
+                .Group(x => x.RestauranteId, g => new { RestauranteId = g.Key, MediaEstrelas = g.Average(a => a.Estrelas) })
+                .SortByDescending(x => x.MediaEstrelas)
+                .Limit(3);
+
+
+            await top3.ForEachAsync(x => 
+            {
+                var restaurante = ObterPorId(x.RestauranteId);
+
+                _avaliacoes.AsQueryable()
+                    .Where(a => a.RestauranteId == x.RestauranteId)
+                    .ToList()
+                    .ForEach(a => restaurante.InserirAvaliacao(a.ConverterParaDomain()));
+
+                retorno.Add(restaurante, x.MediaEstrelas);
+            });
+
+            return retorno;
         }
     }
 }
